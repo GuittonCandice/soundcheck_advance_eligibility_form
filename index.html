@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Eligibility </title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <form id="advanceForm">
+            <div class="slider-container">
+                <img src="logo.jpg" class="logo" />
+                <p class="questions">How many events do you promote a year?</p>
+                <p class="amount answers" id="eventsCount">25 events</p>
+                <input type="range" min="1" max="50" value="25" id="eventsSlider">
+            </div>
+            <div class="slider-container">
+                <p class="questions">How much gross ticket sales do you sell a year?</p>
+                <p class="amount answers" id="ticketSales">$10,000,000</p>
+                <input type="range" min="500000" max="20000000" step="500000" value="10000000" id="salesSlider">
+            </div>
+            <div class="slider-container">
+                <p class="questions">For how long has your company been operating?</p>
+                <p class="amount answers" id="yearsOperating">5 years</p>
+                <input type="range" min="0" max="10" value="5" id="yearsSlider">
+            </div>
+            <div class="eligibilityDiv">
+                <p class="eligibilityLabel">You could be eligible for up to:</p>
+                <p class="eligibility" id="eligibilityAmount">$120,000</p>
+            </div>
+            <input id="email" type="email" class="email-input" placeholder="your-email@google.com">
+            <button class="apply-btn" type="submit">Apply Now</button>
+        </form>
+    </div>
+    <script src="./script.js"></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>    <script>
+        (function(){
+      emailjs.init({
+        publicKey: "cI9NZFtz2liU-dAUJ",
+      });
+   })();
+    </script>
+
+
+</body>
+
+</html>
