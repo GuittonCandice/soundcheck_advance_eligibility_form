@@ -1,7 +1,10 @@
-(function() {
-    // Création du conteneur
-    let container = document.createElement("div");
-    container.innerHTML = `
+(function () {
+    class CustomForm extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({ mode: "open" });
+
+            this.shadowRoot.innerHTML = `
         <div class="container">
             <form id="advanceForm">
                 <div class="slider-container">
@@ -28,52 +31,55 @@
             </form>
         </div>
     `;
-    
-    document.body.appendChild(container);
 
-    // Ajout du style
-    let style = document.createElement("style");
-    style.innerHTML = `
+
+            // Ajout du style
+            let style = document.createElement("style");
+            style.innerHTML = `
         .container { font-family: Arial, sans-serif; background: #fff; padding: 20px; border-radius: 10px; max-width: 400px; }
         .questions { font-size: 14px; }
         .eligibility { font-size: 20px; color: #e91e63; }
         .apply-btn { background: #ff9800; color: white; border: none; padding: 10px; cursor: pointer; }
     `;
-    document.head.appendChild(style);
+            document.head.appendChild(style);
 
-    // Ajout des scripts EmailJS
-    let emailScript = document.createElement("script");
-    emailScript.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-    document.head.appendChild(emailScript);
-    
-    emailScript.onload = function() {
-        emailjs.init("cI9NZFtz2liU-dAUJ");
-    };
+            // Ajout des scripts EmailJS
+            let emailScript = document.createElement("script");
+            emailScript.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+            document.head.appendChild(emailScript);
 
-    // Gestion des sliders et calculs
-    function updateValues() {
-        let sales = document.getElementById("salesSlider").value;
-        let events = document.getElementById("eventsSlider").value;
-        let years = document.getElementById("yearsSlider").value;
-        let eligibility = (sales * 0.1).toLocaleString("en-US");
-        document.getElementById("eligibilityAmount").innerText = `$${eligibility}`;
+            emailScript.onload = function () {
+                emailjs.init("cI9NZFtz2liU-dAUJ");
+            };
+
+            // Gestion des sliders et calculs
+            function updateValues() {
+                let sales = document.getElementById("salesSlider").value;
+                let events = document.getElementById("eventsSlider").value;
+                let years = document.getElementById("yearsSlider").value;
+                let eligibility = (sales * 0.1).toLocaleString("en-US");
+                document.getElementById("eligibilityAmount").innerText = `$${eligibility}`;
+            }
+
+            document.querySelectorAll("input[type=range]").forEach(slider => {
+                slider.addEventListener("input", updateValues);
+            });
+            updateValues();
+
+            document.getElementById("advanceForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                let email = document.getElementById("email").value;
+                let sales = document.getElementById("salesSlider").value;
+                let eligibility = document.getElementById("eligibilityAmount").innerText;
+
+                emailjs.send("service_p09r79s", "template_f3kgztv", {
+                    user_email: email,
+                    sales: sales,
+                    eligibility: eligibility
+                }).then(() => alert("Email envoyé !"));
+            });
+        }
     }
+    customElements.define("custom-form", CustomForm);
 
-    document.querySelectorAll("input[type=range]").forEach(slider => {
-        slider.addEventListener("input", updateValues);
-    });
-    updateValues();
-
-    document.getElementById("advanceForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        let email = document.getElementById("email").value;
-        let sales = document.getElementById("salesSlider").value;
-        let eligibility = document.getElementById("eligibilityAmount").innerText;
-
-        emailjs.send("service_p09r79s", "template_f3kgztv", {
-            user_email: email,
-            sales: sales,
-            eligibility: eligibility
-        }).then(() => alert("Email envoyé !"));
-    });
 })();
