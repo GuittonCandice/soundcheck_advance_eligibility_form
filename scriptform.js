@@ -184,7 +184,7 @@ input[type=range]::-moz-range-thumb {
         this.shadowRoot.getElementById("yearsSlider").addEventListener("input", (event) => {
                 var input = event.target.value;
                 if(input == 1) this.shadowRoot.getElementById("yearsOperating").innerText = `${input} year`;
-                if(input == 10) this.shadowRoot.getElementById("yearsOperating").innerText = `${input}+ years`;
+                else if(input == 10) this.shadowRoot.getElementById("yearsOperating").innerText = `${input}+ years`;
                 else this.shadowRoot.getElementById("yearsOperating").innerText = `${input} years`;
                 this.calculateAdvance();
             });
@@ -192,7 +192,7 @@ input[type=range]::-moz-range-thumb {
             this.shadowRoot.getElementById("eventsSlider").addEventListener("input", (event) => {
                 var input = event.target.value;
                 if(input == 1) this.shadowRoot.getElementById("eventsCount").innerText = `${input} event`;
-                if(input == 50) this.shadowRoot.getElementById("eventsCount").innerText = `${input}+ events`;
+                else if(input == 50) this.shadowRoot.getElementById("eventsCount").innerText = `${input}+ events`;
                 else this.shadowRoot.getElementById("eventsCount").innerText = `${input} events`;
                 this.calculateAdvance();
             });    
