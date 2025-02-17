@@ -5,72 +5,10 @@ class CustomForm extends HTMLElement {
 
         this.shadowRoot.innerHTML = `
             <style>
-            :host {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 500px; /* Taille max du formulaire */
-    min-width: 300px; /* Taille minimale */
-    padding: 10px;
-}
-
-.container {
-    background: #fff;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.slider-container {
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-input[type=range] {
-    width: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-    border-radius: 5px;
-    outline: none;
-}
-
-.email-input,
-.apply-btn {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
-
-    .eligibility {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 400px) {
-    .eligibility {
-        font-size: 24px;
-    }
-}
-
                 body {
     font-family: 'Archivo', sans-serif;
     background-color: #222;
-    display: flex;
-    justify-content: center;
+    justify-content: left ;
     align-items: center;
     height: auto;
     margin: 0;
@@ -79,12 +17,12 @@ input[type=range] {
 #advanceForm {
     background: #ffffff;
     border-radius: 10px;
-    width: 436px;
-    text-align: center;
+ width: min(90vw, 436px); /* 90% de la largeur de la fenêtre, max 436px */
+    height: auto; /* Ajuste la hauteur selon le contenu */
+    max-width: 436px;
+    min-width: 300px;     text-align: center;
     overflow: auto;
     display: flex;
-    justify-content: space-between;
-    margin: 0 0;
     flex-direction: column;
     position: relative;
 }
@@ -109,7 +47,7 @@ input[type=range] {
 }
 
 input[type=range] {
-    width: 346px;
+    width: 80%;
     height: 3px;
     -webkit-appearance: none;
     appearance: none;
@@ -179,7 +117,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .email-input {
-    width: 345px;
+    width: 90%;
     height: 40px;
     border: 0.3px solid #03010A;
     border-radius: 6px;
@@ -196,7 +134,7 @@ input[type=range]::-moz-range-thumb {
     color: white;
     border: none;
     padding: 10px;
-    width: 345px;
+    width: 90%;
     height: 40px;
     border-radius: 6px;
     font-size: 1em;
