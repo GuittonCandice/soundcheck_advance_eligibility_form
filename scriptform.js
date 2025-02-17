@@ -163,7 +163,7 @@ input[type=range]::-moz-range-thumb {
             <div class="slider-container">
                 <p class="questions">For how long has your company been operating?</p>
                 <p class="amount answers" id="yearsOperating">5 years</p>
-                <input type="range" min="0" max="10" value="5" id="yearsSlider">
+                <input type="range" min="1" max="10" value="5" id="yearsSlider">
             </div>
             <div class="eligibilityDiv">
                 <p class="eligibilityLabel">You could be eligible for up to:</p>
@@ -183,18 +183,23 @@ input[type=range]::-moz-range-thumb {
         // Mettre à jour les valeurs des sliders
         this.shadowRoot.getElementById("yearsSlider").addEventListener("input", (event) => {
                 var input = event.target.value;
-                this.shadowRoot.getElementById("yearsOperating").innerText = `${input} years`;
+                if(input == 1) this.shadowRoot.getElementById("yearsOperating").innerText = `${input} year`;
+                if(input == 10) this.shadowRoot.getElementById("yearsOperating").innerText = `${input}+ years`;
+                else this.shadowRoot.getElementById("yearsOperating").innerText = `${input} years`;
                 this.calculateAdvance();
             });
 
             this.shadowRoot.getElementById("eventsSlider").addEventListener("input", (event) => {
                 var input = event.target.value;
-                this.shadowRoot.getElementById("eventsCount").innerText = `${input} events`;
+                if(input == 1) this.shadowRoot.getElementById("eventsCount").innerText = `${input} event`;
+                if(input == 50) this.shadowRoot.getElementById("eventsCount").innerText = `${input}+ events`;
+                else this.shadowRoot.getElementById("eventsCount").innerText = `${input} events`;
                 this.calculateAdvance();
             });    
             this.shadowRoot.getElementById("salesSlider").addEventListener("input", (event) => {
                 var input = event.target.value;
-                this.shadowRoot.getElementById("ticketSales").innerText =`$${Number(input).toLocaleString("en-US")}`;
+                if(input == 20000000) this.shadowRoot.getElementById("ticketSales").innerText =`$${Number(input).toLocaleString("en-US")}+`;
+                else this.shadowRoot.getElementById("ticketSales").innerText =`$${Number(input).toLocaleString("en-US")}`;
                 this.calculateAdvance();
             });  
         this.shadowRoot.querySelectorAll("input[type=range]").forEach(slider => {
