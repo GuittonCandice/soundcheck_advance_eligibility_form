@@ -8,8 +8,8 @@ class CustomForm extends HTMLElement {
                 body {
     font-family: 'Archivo', sans-serif;
     background-color: #222;
-    justify-content: left ;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: left;
     height: auto;
     margin: 0;
 }
