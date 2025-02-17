@@ -29,7 +29,7 @@ function calculateAdvance() {
         { min: 21, max: 49, percentage: 0.80 },
         { min: 50, max: 50, percentage: 1.00 }
     ];
-    
+
     const yearsAdvanceEligibilityFactor = [
         { min: 0, max: 0, percentage: 0.00 },
         { min: 1, max: 2, percentage: 0.15 },
@@ -42,12 +42,12 @@ function calculateAdvance() {
 
     var yearsAdvanceEligibility = getPercentage(years, yearsAdvanceEligibilityFactor);
     console.log(yearsAdvanceEligibility);
-    var range = soundcheckMaxAdvance-soundcheckBaseAdvance;
-    var scoring = (eventsAdvanceEligibility+yearsAdvanceEligibility)/2;
-    var advanceEligibility = (soundcheckBaseAdvance+range)*scoring;
+    var range = soundcheckMaxAdvance - soundcheckBaseAdvance;
+    var scoring = (eventsAdvanceEligibility + yearsAdvanceEligibility) / 2;
+    var advanceEligibility = (soundcheckBaseAdvance + range) * scoring;
 
-    let eligibility = sales*advanceEligibility;
-    if(eligibility > maxAdvance) {
+    let eligibility = sales * advanceEligibility;
+    if (eligibility > maxAdvance) {
         eligibility = maxAdvance;
     }
     document.getElementById("eligibilityAmount").innerText = `$${parseInt(eligibility).toLocaleString("en-US")}`;
@@ -77,12 +77,12 @@ function changeYearInputStep() {
 }
 document.getElementById("yearsSlider").addEventListener("input", changeYearInputStep);
 
-document.getElementById("advanceForm").addEventListener("submit", function(event) {
+document.getElementById("advanceForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Empêche l'envoi classique
 
     // Récupération des valeurs
     let email = document.getElementById("email").value;
-    
+
     var yearsSlider = document.getElementById("yearsSlider").value;
     var eventsSlider = document.getElementById("eventsSlider").value;
     var sales = document.getElementById("salesSlider").innerText;
@@ -91,7 +91,7 @@ document.getElementById("advanceForm").addEventListener("submit", function(event
     sendEmail(email, yearsSlider, eventsSlider, sales, eligibility);
 });
 
-function sendEmail(email, yearsSlider, eventsSlider,sales, eligibility) {
+function sendEmail(email, yearsSlider, eventsSlider, sales, eligibility) {
     emailjs.send("service_p09r79s", "template_f3kgztv", {
         user_email: email,
         yearSlider: yearsSlider,
@@ -103,3 +103,6 @@ function sendEmail(email, yearsSlider, eventsSlider,sales, eligibility) {
     }).catch(error => {
     });
 }
+
+
+
