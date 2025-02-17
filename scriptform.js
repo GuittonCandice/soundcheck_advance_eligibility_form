@@ -151,7 +151,7 @@ input[type=range]::-moz-range-thumb {
             </style>
             <form id="advanceForm">
             <div class="slider-container">
-                <img src="logo.jpg" class="logo" />
+                <img src="https://guittoncandice.github.io/soundcheck_advance_eligibility_form/logo.jpg" class="logo" />
                 <p class="questions">How many events do you promote a year?</p>
                 <p class="amount answers" id="eventsCount">25 events</p>
                 <input type="range" min="1" max="50" value="25" id="eventsSlider">
