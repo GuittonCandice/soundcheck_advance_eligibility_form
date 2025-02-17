@@ -5,6 +5,67 @@ class CustomForm extends HTMLElement {
 
         this.shadowRoot.innerHTML = `
             <style>
+            :host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Taille max du formulaire */
+    min-width: 300px; /* Taille minimale */
+    padding: 10px;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.slider-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input[type=range] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border-radius: 5px;
+    outline: none;
+}
+
+.email-input,
+.apply-btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .eligibility {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 400px) {
+    .eligibility {
+        font-size: 24px;
+    }
+}
+
                 body {
     font-family: 'Archivo', sans-serif;
     background-color: #222;
